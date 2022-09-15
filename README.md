@@ -20,14 +20,6 @@ I am sure you will like several CSS tips in this project.
 <br />
 <br />
 
-### Demo
-<div align="center">
-  <img src="https://github.com/MohammadSahragard/Responsive-Pricing-Table/blob/main/demo.gif?raw=true" />
-</div>
-
-<br />
-<br />
-
 ### See The Post Of This Project In:
 - [YouTube](https://youtu.be/4L_YMgfa6n4)
 - [Instagram]()
