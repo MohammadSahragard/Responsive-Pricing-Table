@@ -1,0 +1,205 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap');
+
+html {
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+*,
+*::after,
+*::before {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg-primary: #101513;
+    --bg-accent: linear-gradient(to bottom right, #18E48F, #18C0E4);
+
+    --card-border: linear-gradient(to bottom right, #ffffff50, #fff0, #ffffff50);
+    --card-bg: linear-gradient(to bottom right, #ffffff02, #27312d, #ffffff02);
+}
+
+/* --------------- container */
+.container {
+    height: 100vh;
+    background-color: var(--bg-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+.container::after,
+.container::before {
+    content: '';
+    position: absolute;
+    width: 50%;
+    aspect-ratio: 1;
+    background-image: radial-gradient(#18C0E4, transparent);
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    filter: blur(300px);
+
+    top: 0;
+    left: 0;
+}
+.container::before {
+    top: 100%;
+    left: 100%;
+    background-image: radial-gradient(#18E48F, transparent);
+}
+
+.pricing-table {
+    width: max(400px, 1000px);
+    height: 60%;
+    margin: 0 40px;
+    position: relative;
+    z-index: 1;
+}
+
+.price-card {
+    width: max(250px, 30%);
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: var(--left);
+    transform: var(--translate);
+    background: var(--card-border);
+    display: grid;
+    grid-template-rows: repeat(2, max-content) auto max-content;
+    gap: 20px;
+    padding: 40px;
+    border-radius: 20px;
+    transition: 0.4s;
+}
+.price-card::before {
+    content: '';
+    position: absolute;
+    inset: 1px;
+    background-image: var(--card-bg);
+    border-radius: 19px;
+}
+
+.price-card :is(.card-title, .price-box, .features-table, .buy-button) {
+    position: relative;
+    color: white;
+    border-radius: 10px;
+}
+.card-title {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+.price-box {
+    width: max-content;
+    justify-self: center;
+    background-image: var(--bg-accent);
+    padding: 10px 30px;
+    box-shadow: 0 0 20px #18E48F50;
+}
+
+.price {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.integer-price {
+    font-size: 1.9rem;
+}
+
+.feature-title {
+    color: rgba(255, 255, 255, 80%);
+}
+.feature-accessibility {
+    font-weight: 400;
+    text-align: end;
+}
+
+.buy-button {
+    all: unset;
+    text-align: center;
+    background-image: var(--bg-accent);
+    padding: 10px;
+    cursor: pointer;
+    transition: 0.4s;
+}
+.buy-button:hover {
+    box-shadow: 0 0 20px #18C0E460;
+}
+
+.price-card.standard {
+    background-image: var(--bg-accent);
+    z-index: 50;
+}
+.price-card.standard::before {
+    background: transparent;
+}
+.price-card.standard .price-box {
+    background: white;
+    box-shadow: 0 0 20px #fff5;
+}
+.price-card.standard .price {
+    background-image: var(--bg-accent);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+.price-card.standard .buy-button {
+    background: white;
+    color: #18C0E4;
+}
+
+.price-card.show {
+    box-shadow: 0 0 100px #101513;
+    z-index: 100;
+    height: 110%;
+    top: -5%;
+}
+
+
+/* --------------- switch between cards */
+@media screen and (max-width: 750px) {
+    .pricing-table :is(.previous-card, .next-card) {
+        position: absolute;
+        top: 50%;
+        width: 40px;
+        height: 40px;
+        transform: translate(-50%, -50%);
+        background-color: #fff5;
+        backdrop-filter: blur(20px);
+        border-radius: 50%;
+        cursor: pointer;
+        z-index: 1000;
+    }
+    .pricing-table .next-card {
+        left: 100%;
+    }
+    .previous-card::before,
+    .next-card::before {
+        content: "";
+        position: absolute;
+        inset: 40%;
+        border-width: 0 2px 2px 0;
+        border-style: solid;
+        border-color: white;
+        transform: rotate(135deg);
+    }
+    .next-card::before {
+        transform: rotate(315deg);
+    }
+
+    .pricing-table::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: 90;
+    }
+
+    .price-card:not(.show) {
+        filter: blur(5px);
+    }
+}
