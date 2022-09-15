@@ -22,6 +22,7 @@ I am sure you will like several CSS tips in this project.
 
 ### Demo
 <div align="center">
+  <img src="https://github.com/MohammadSahragard/Responsive-Pricing-Table/blob/main/demo.gif?raw=true" />
 </div>
 
 <br />
